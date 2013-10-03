@@ -27,3 +27,7 @@
     (is (inside-interval y2))
     ))
 
+(deftest calc-line-w-test
+  (is (= [14/3 5/2 -77/6] (pla.step/calc-line-w [[3/2 7/3] [-1 7]])))
+  )
+
