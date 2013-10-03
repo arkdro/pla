@@ -54,6 +54,11 @@
     )
   )
 
+(defn mk-norm-line []
+  (let [line (mk-line)
+        [kx ky c] (calc-line-w line)]
+    (stretch kx ky c)))
+
 (defn calc [n]
   (println "n: " n)
   )
