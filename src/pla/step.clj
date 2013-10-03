@@ -41,6 +41,19 @@
         c (- cx cy)]
     [dy (- dx) c]))
 
+;; given line coefficients, return two points located far enough from
+;; each other
+(defn stretch [kx ky c]
+  (let [
+        x1 -1
+        y1 (/ (- kx c) ky)
+        x2 1
+        y2 (/ (- (+ kx c)) ky)
+        ]
+    [[x1 y1] [x2 y2]]
+    )
+  )
+
 (defn calc [n]
   (println "n: " n)
   )
