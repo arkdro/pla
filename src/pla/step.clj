@@ -20,6 +20,19 @@
   ;; (view c1)
   )
 
+(defn mk-rand []
+  (- (rand 2.000001) 1))
+
+(defn mk-point []
+  [(mk-rand)
+   (mk-rand)]
+  )
+
+(defn mk-line []
+  [(mk-point)
+   (mk-point)]
+  )
+
 (defn calc [n]
   (println "n: " n)
   )
