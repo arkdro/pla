@@ -41,9 +41,7 @@
         c (- cx cy)]
     [dy (- dx) c]))
 
-;; given line coefficients, return two points located far enough from
-;; each other
-(defn normalize [kx ky c]
+(defn normalize-by-x [kx ky c]
   (let [
         x1 -1
         y1 (/ (- kx c) ky)
@@ -53,6 +51,24 @@
     [[x1 y1] [x2 y2]]
     )
   )
+
+(defn normalize-by-y [kx ky c]
+  (let [
+        y1 -1
+        x1 (/ (- ky c) kx)
+        y2 1
+        x2 (/ (- (+ ky c)) kx)
+        ]
+    [[x1 y1] [x2 y2]]
+    )
+  )
+
+;; given line coefficients, return two points located far enough from
+;; each other
+(defn normalize [kx ky c]
+  (if (< (pla.misc/abs kx) (pla.misc/abs ky))
+    (normalize-by-x kx ky c)
+    (normalize-by-y kx ky c)))
 
 (defn mk-norm-line []
   (let [line (mk-line)
