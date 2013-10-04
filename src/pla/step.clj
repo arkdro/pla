@@ -1,5 +1,6 @@
 (ns pla.step
   ;; (:use [incanter core stats charts])
+  (:require [pla.misc])
   )
 
 (defn plot []
