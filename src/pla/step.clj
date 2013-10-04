@@ -43,7 +43,7 @@
 
 ;; given line coefficients, return two points located far enough from
 ;; each other
-(defn stretch [kx ky c]
+(defn normalize [kx ky c]
   (let [
         x1 -1
         y1 (/ (- kx c) ky)
@@ -57,7 +57,7 @@
 (defn mk-norm-line []
   (let [line (mk-line)
         [kx ky c] (calc-line-w line)]
-    (stretch kx ky c)))
+    (normalize kx ky c)))
 
 (defn calc [n]
   (println "n: " n)
