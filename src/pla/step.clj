@@ -1,9 +1,14 @@
 (ns pla.step
-  ;; (:use [incanter core stats charts])
+  (:use [incanter core stats charts])
   (:require [pla.misc])
   )
 
-(defn plot []
+(defn mk-filename [base i]
+  (let [
+        i-str (format "%04d" i)]
+    (apply str ["pla-" base "-" i-str ".png"])))
+
+(defn plot [[[x1 y1] [x2 y2]] base i]
   ;; ex1:
   ;; (doto (xy-plot [1 2 3] [4 5 6]) (add-points [1 2 3] [4.1 5.1 6.1]) (set-stroke-color java.awt.Color/black :series 0) (set-stroke-color java.awt.Color/red :series 1) view)
 
@@ -19,7 +24,15 @@
   ;; (add-points c1 [0.15 0.55 0.95] [3.15 2.91 2.51]) ;; this is the 3rd pack
   ;; (save c1 "/tmp/c1-1.png" :width 600 :height 500)
   ;; (view c1)
-  )
+  (let [fname (mk-filename base i)]
+    (doto (xy-plot [x1 x2] [y1 y2])
+      (set-x-range -1 1)
+      (set-y-range -1 1)
+      ;; (add-points [1 2 3] [4.1 5.1 6.1])
+      (set-stroke-color java.awt.Color/black :series 0)
+      ;; (set-stroke-color java.awt.Color/red :series 1)
+      (save fname :width 300 :height 250)
+      )))
 
 (defn mk-rand []
   (- (rand 2.000001) 1))
