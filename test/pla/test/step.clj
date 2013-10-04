@@ -31,3 +31,13 @@
   (is (= [14/3 5/2 -77/6] (pla.step/calc-line-w [[3/2 7/3] [-1 7]])))
   )
 
+(deftest normalize-by-x-test
+  (is (= [[-1 7] [1 49/15]] (pla.step/normalize-by-x 14/3 5/2 -77/6)))
+  (is (= [[-1 23/7] [1 31/14]] (pla.step/normalize-by-x 5/2 14/3 -77/6)))
+  )
+
+(deftest normalize-by-y-test
+  (is (= [[23/7 -1] [31/14 1]] (pla.step/normalize-by-y 14/3 5/2 -77/6)))
+  (is (= [[7 -1] [49/15 1]] (pla.step/normalize-by-y 5/2 14/3 -77/6)))
+  )
+
