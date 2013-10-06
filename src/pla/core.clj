@@ -9,6 +9,14 @@
   )
 
 ;; (trace-ns 'pla.step)
+;; (trace-vars pla.step/calc-one-step)
+;; (trace-vars pla.step/pla)
+;; (trace-vars pla.step/pla-aux)
+;; (trace-vars pla.step/get-misclassified)
+;; (trace-vars pla.step/update-w)
+;; (trace-vars pla.step/is-misclassified)
+;; (untrace-vars pla.step/calc-diff-prob)
+;; (untrace-vars pla.step/calc-diff-prob-aux)
 
 (defn call-calc [n cnt verbose pic]
   (if verbose
