@@ -42,7 +42,7 @@
    (mk-rand)]
   )
 
-(defn mk-line []
+(defn mk-any-line []
   [(mk-point)
    (mk-point)]
   )
@@ -85,7 +85,7 @@
     (normalize-by-y kx ky c)))
 
 (defn mk-norm-line []
-  (let [line (mk-line)
+  (let [line (mk-any-line)
         [kx ky c] (calc-line-w line)]
     (normalize kx ky c)))
 
