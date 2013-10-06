@@ -219,6 +219,20 @@
     (if (or (empty? y1) (empty? y2)) true
         false)))
 
+(defn calc-diff-prob-aux [i acc line res-line]
+  (if (= i 0) acc
+      (let [point (mk-point)
+            y0 (calc-one-y line point)
+            y1 (calc-one-y res-line point)]
+        (if (= y0 y1) (recur (dec i) acc line res-line)
+            (recur (dec i) (inc acc) line res-line)))))
+
+(defn calc-diff-prob [line res-line]
+  (if (line-outside res-line) 1
+      (let [n 10000
+            delta (calc-diff-prob-aux n 0 line res-line)]
+        (/ delta n))))
+
 (defn calc [n pic]
   (let [line (mk-line)
         points (gen-points n)
