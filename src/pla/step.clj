@@ -155,6 +155,11 @@
   (let [p (calc-one-y2 w point)]
     (not (= p y))))
 
+(defn get-misclassified [w ys points]
+  (let [merged (map list ys points)
+        mis-all (map #(is-misclassified w %) merged)]
+    (first (shuffle mis-all))))
+
 (defn calc [n]
   (println "n: " n)
   )
