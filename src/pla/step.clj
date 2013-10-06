@@ -94,6 +94,25 @@
 (defn gen-points [n]
   (repeatedly n mk-point))
 
+(defn calc-one-y [
+                  [[x0 y0] [x1 y1]]
+                  [x y]
+                  ]
+  (let [
+        dy (- y1 y0)
+        dx (- x1 x0)
+        res (+ (* x dy)
+               (* (- y) dx)
+               (* (- x0) dy)
+               (* y0 dx)
+               )
+        ]
+    (if (>= res 0) 1
+        -1)))
+
+(defn calc-y [line points]
+  (map #(calc-one-y line %) points))
+
 (defn calc [n]
   (println "n: " n)
   )
