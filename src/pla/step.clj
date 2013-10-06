@@ -53,7 +53,9 @@
       (set-stroke-color java.awt.Color/red :series 1)
       (set-stroke-color java.awt.Color/green :series 2)
       (save fname :width 300 :height 250)
-      )))
+      ))
+  :ok)
+
 
 (defn mk-rand []
   (- (rand 2.000001) 1))
