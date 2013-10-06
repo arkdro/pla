@@ -113,6 +113,13 @@
 (defn calc-y [line points]
   (map #(calc-one-y line %) points))
 
+(defn split-points [ys points]
+  (let [merged (map list ys points)
+        {neg-merged false, pos-merged true} (group-by #(pos? (first %)) merged)
+        neg (map second neg-merged)
+        pos (map second pos-merged)]
+    [neg pos]))
+
 (defn calc [n]
   (println "n: " n)
   )
