@@ -56,11 +56,11 @@
       ))
   :ok)
 
-(defn plot-one-res-square [[[x1 y1] [x2 y2] :as line]
-                           neg-points pos-points base
-                           [[rx1 ry1] [rx2 ry2] :as res-line]]
-  (println "l1: x1" x1 "y1" y1 ", x2" x2 "y2" y2)
-  (println "l2: rx1" rx1 "ry1" ry1 ", rx2" rx2 "ry2" ry2)
+(defn plot-one-res-square-aux [[[x1 y1] [x2 y2] :as line]
+                               neg-points pos-points base
+                               [[rx1 ry1] [rx2 ry2] :as res-line]]
+  ;; (println "l1: x1" x1 "y1" y1 ", x2" x2 "y2" y2)
+  ;; (println "l2: rx1" rx1 "ry1" ry1 ", rx2" rx2 "ry2" ry2)
   (let [fname (mk-filename base 1)
         neg-xs (map first neg-points)
         neg-ys (map second neg-points)
@@ -80,6 +80,12 @@
       (save fname :width 300 :height 250)
       ))
   :ok)
+
+(defn plot-one-res-square [flag line neg-points pos-points base res-line]
+  (if (= flag true) (plot-one-res-square-aux line
+                                             neg-points
+                                             pos-points
+                                             base res-line)))
 
 (defn mk-rand []
   (- (rand 2.000001) 1))
@@ -202,7 +208,26 @@
 (defn pla [w ys points]
   (pla-aux 0 w ys points))
 
-(defn calc [n]
-  (println "n: " n)
+(defn calc [n pic]
+  (let [line (mk-line)
+        points (gen-points n)
+        ys (calc-y line points)
+        [neg-points pos-points] (split-points ys points)
+        base (int (rand 1000))
+        ;; _ (plot-one-square line neg-points pos-points base)
+        init-w [0 0 0]
+        [_ [wr0 wr1 wr2 :as res-w] :as pla-res] (pla init-w ys points)
+        _ (println "pla res" pla-res)
+        res-line (normalize wr1 wr2 wr0)
+        _ (plot-one-res-square pic line neg-points pos-points base res-line)
+        ]
+    ;; (dotimes [x n] (let [line (pla.step/mk-norm-line)]
+    ;;                  (plot line base x)
+    ;;                  (println line)
+    ;;                  )
+    ;;          )
+    (println "n: " n)
+    ys
+    )
   )
 
