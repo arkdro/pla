@@ -115,6 +115,14 @@
 (defn gen-points [n]
   (repeatedly n mk-point))
 
+(defn calc-one-y2 [[w0 w1 w2]
+                   [x1 x2]]
+  (let [p (+ (* w0 1)
+             (* w1 x1)
+             (* w2 x2))]
+    (if (>= p 0) 1
+        -1)))
+
 (defn calc-one-y [
                   [[x0 y0] [x1 y1]]
                   [x y]
