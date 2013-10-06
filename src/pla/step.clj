@@ -34,6 +34,27 @@
       (save fname :width 300 :height 250)
       )))
 
+(defn plot-one-square [[[x1 y1] [x2 y2] :as line]
+                       neg-points
+                       pos-points
+                       base]
+  (let [fname (mk-filename base 0)
+        neg-xs (map first neg-points)
+        neg-ys (map second neg-points)
+        pos-xs (map first pos-points)
+        pos-ys (map second pos-points)
+        ]
+    (doto (xy-plot [x1 x2] [y1 y2])
+      (set-x-range -1 1)
+      (set-y-range -1 1)
+      (add-points neg-xs neg-ys)
+      (add-points pos-xs pos-ys)
+      (set-stroke-color java.awt.Color/black :series 0)
+      (set-stroke-color java.awt.Color/red :series 1)
+      (set-stroke-color java.awt.Color/green :series 2)
+      (save fname :width 300 :height 250)
+      )))
+
 (defn mk-rand []
   (- (rand 2.000001) 1))
 
