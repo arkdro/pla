@@ -56,6 +56,30 @@
       ))
   :ok)
 
+(defn plot-one-res-square [[[x1 y1] [x2 y2] :as line]
+                           neg-points pos-points base
+                           [[rx1 ry1] [rx2 ry2] :as res-line]]
+  (println "l1: x1" x1 "y1" y1 ", x2" x2 "y2" y2)
+  (println "l2: rx1" rx1 "ry1" ry1 ", rx2" rx2 "ry2" ry2)
+  (let [fname (mk-filename base 1)
+        neg-xs (map first neg-points)
+        neg-ys (map second neg-points)
+        pos-xs (map first pos-points)
+        pos-ys (map second pos-points)
+        ]
+    (doto (xy-plot [x1 x2] [y1 y2])
+      (set-x-range -1 1)
+      (set-y-range -1 1)
+      (add-points neg-xs neg-ys)
+      (add-points pos-xs pos-ys)
+      (add-lines [rx1 rx2] [ry1 ry2])
+      (set-stroke-color java.awt.Color/black :series 0)
+      (set-stroke-color java.awt.Color/red :series 1)
+      (set-stroke-color java.awt.Color/blue :series 2)
+      (set-stroke-color java.awt.Color/green :series 3)
+      (save fname :width 300 :height 250)
+      ))
+  :ok)
 
 (defn mk-rand []
   (- (rand 2.000001) 1))
