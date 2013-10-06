@@ -184,8 +184,9 @@
 (defn is-misclassified [[w0 w1 w2 :as w]
                         [y
                          [x1 x2 :as point]]]
-  (let [p (calc-one-y2 w point)]
-    (not (= p y))))
+  (if (= w [0 0 0]) true
+      (let [p (calc-one-y2 w point)]
+        (not (= p y)))))
 
 (defn get-misclassified [w ys points]
   (let [merged (map list ys points)
