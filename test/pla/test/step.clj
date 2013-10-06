@@ -84,3 +84,14 @@
   (is (= -1 (pla.step/calc-one-y2 [1 0.21 0.33] [-1 -3])))
   )
 
+(deftest get-misclassified-test
+  (is (= [0.1 -0.9] (pla.step/get-misclassified [1 0.21 1.13]
+                                                [-1 1]
+                                                [[0.1 -0.9] [3.01 3]]
+                                                )))
+  (is (= nil (pla.step/get-misclassified [1 0.21 1.31]
+                                         [-1 1]
+                                         [[0.1 -0.9] [3.01 3]]
+                                         )))
+  )
+
