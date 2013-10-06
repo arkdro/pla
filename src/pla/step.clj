@@ -160,6 +160,13 @@
         mis-all (filter #(is-misclassified w %) merged)]
     (second (first (shuffle mis-all)))))
 
+(defn update-w [[w0 w1 w2]
+                y
+                [x1 x2]]
+  [(+ w0 (* y 1))
+   (+ w1 (* y x1))
+   (+ w2 (* y x2))])
+
 
 (defn calc [n]
   (println "n: " n)
