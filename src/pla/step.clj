@@ -233,12 +233,11 @@
             delta (calc-diff-prob-aux n 0 line res-line)]
         (float (/ delta n)))))
 
-(defn calc [n pic]
+(defn calc-one-step [n pic base]
   (let [line (mk-line)
         points (gen-points n)
         ys (calc-y line points)
         [neg-points pos-points] (split-points ys points)
-        base (int (rand 1000))
         init-w [0 0 0]
         [res-iters [wr0 wr1 wr2 :as res-w] :as pla-res] (pla init-w ys points)
         _ (pla.misc/log-val "pla res" pla-res)
@@ -248,6 +247,22 @@
         _ (pla.misc/log-val "diff p" diff-p)
         ]
     [res-iters diff-p]
+    )
+  )
+
+(defn calc [n cnt pic]
+  (let [base (int (rand 1000))
+        _ (pla.misc/log-val "n" n "cnt" cnt "base" base)
+        res (for
+                [_ (range cnt)]
+              (calc-one-step n pic base))
+        _ (pla.misc/log-val "all step res" res)
+        sum-iters (reduce + (map first res))
+        sum-probs (reduce + (map second res))
+        avg-iters (float (/ sum-iters cnt))
+        avg-probs (float (/ sum-probs cnt))
+        ]
+    [avg-iters avg-probs]
     )
   )
 
