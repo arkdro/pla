@@ -72,3 +72,15 @@
          (pla.step/split-points [-1 1] [[0.1 -0.9] [3.01 3]])))
   )
 
+(deftest is-misclassified-test
+  (is (= false (pla.step/is-misclassified [0 0 0] 1 [3.01 3])))
+  (is (= true (pla.step/is-misclassified [0 0 0] -1 [3.01 3])))
+  (is (= true (pla.step/is-misclassified [1 0.5 1.23] -1 [3.01 3])))
+  )
+
+(deftest calc-one-y2-test
+  (is (= 1 (pla.step/calc-one-y2 [1 0.21 0.33] [-1 0])))
+  (is (= 1 (pla.step/calc-one-y2 [1 0.25 0.25] [-1 -3])))
+  (is (= -1 (pla.step/calc-one-y2 [1 0.21 0.33] [-1 -3])))
+  )
+
