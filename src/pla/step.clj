@@ -88,6 +88,9 @@
         [kx ky c] (calc-line-w line)]
     (normalize kx ky c)))
 
+(defn mk-line []
+  (mk-norm-line))
+
 (defn gen-points [n]
   (repeatedly n mk-point))
 
