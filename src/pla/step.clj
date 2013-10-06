@@ -226,8 +226,7 @@
     ;;                  (println line)
     ;;                  )
     ;;          )
-    (println "n: " n)
-    ys
+    res-iters
     )
   )
 
