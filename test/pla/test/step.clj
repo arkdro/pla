@@ -19,8 +19,8 @@
     (is (inside-interval y))
     ))
 
-(deftest mk-line-test
-  (let [[[x1 y1] [x2 y2]] (pla.step/mk-line)]
+(deftest mk-any-line-test
+  (let [[[x1 y1] [x2 y2]] (pla.step/mk-any-line)]
     (is (inside-interval x1))
     (is (inside-interval y1))
     (is (inside-interval x2))
