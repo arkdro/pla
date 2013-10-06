@@ -59,8 +59,8 @@
 (defn plot-one-res-square-aux [[[x1 y1] [x2 y2] :as line]
                                neg-points pos-points base
                                [[rx1 ry1] [rx2 ry2] :as res-line]]
-  ;; (println "l1: x1" x1 "y1" y1 ", x2" x2 "y2" y2)
-  ;; (println "l2: rx1" rx1 "ry1" ry1 ", rx2" rx2 "ry2" ry2)
+  (pla.misc/log-val "l1:" ["x1" x1 "y1" y1 ", x2" x2 "y2" y2])
+  (pla.misc/log-val "l2:" ["rx1" rx1 "ry1" ry1 ", rx2" rx2 "ry2" ry2])
   (let [fname (mk-filename base 1)
         neg-xs (map first neg-points)
         neg-ys (map second neg-points)
@@ -217,7 +217,7 @@
         ;; _ (plot-one-square line neg-points pos-points base)
         init-w [0 0 0]
         [_ [wr0 wr1 wr2 :as res-w] :as pla-res] (pla init-w ys points)
-        _ (println "pla res" pla-res)
+        _ (pla.misc/log-val "pla res" pla-res)
         res-line (normalize wr1 wr2 wr0)
         _ (plot-one-res-square pic line neg-points pos-points base res-line)
         ]
