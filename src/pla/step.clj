@@ -167,6 +167,14 @@
    (+ w1 (* y x1))
    (+ w2 (* y x2))])
 
+(defn pla-aux [i w ys points]
+  (let [[mis-y mis-point :as mis] (get-misclassified w ys points)]
+    (if (nil? mis) [i w]
+        (let [new-w (update-w w mis-y mis-point)]
+          (recur (inc i) new-w ys points)))))
+
+(defn pla [w ys points]
+  (pla-aux 0 w ys points))
 
 (defn calc [n]
   (println "n: " n)
