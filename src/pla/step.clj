@@ -241,7 +241,7 @@
         base (int (rand 1000))
         ;; _ (plot-one-square line neg-points pos-points base)
         init-w [0 0 0]
-        [_ [wr0 wr1 wr2 :as res-w] :as pla-res] (pla init-w ys points)
+        [res-iters [wr0 wr1 wr2 :as res-w] :as pla-res] (pla init-w ys points)
         _ (pla.misc/log-val "pla res" pla-res)
         res-line (normalize wr1 wr2 wr0)
         _ (plot-one-res-square pic line neg-points pos-points base res-line)
