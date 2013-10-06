@@ -200,7 +200,9 @@
    (+ w2 (* y x2))])
 
 (defn pla-aux [i w ys points]
-  (let [[mis-y mis-point :as mis] (get-misclassified w ys points)]
+  (let [[mis-y mis-point :as mis] (get-misclassified w ys points)
+        _ (pla.misc/log-val "pla-aux" "i" i "w" w "mis" mis)
+        ]
     (if (nil? mis) [i w]
         (let [new-w (update-w w mis-y mis-point)]
           (recur (inc i) new-w ys points)))))
