@@ -246,6 +246,7 @@
         res-line (normalize wr1 wr2 wr0)
         _ (plot-one-res-square pic line neg-points pos-points base res-line)
         diff-p (calc-diff-prob line res-line)
+        _ (pla.misc/log-val "diff p" diff-p)
         ]
     ;; (dotimes [x n] (let [line (pla.step/mk-norm-line)]
     ;;                  (plot line base x)
