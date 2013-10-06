@@ -150,8 +150,8 @@
     [neg pos]))
 
 (defn is-misclassified [[w0 w1 w2 :as w]
-                        y
-                        [x1 x2 :as point]]
+                        [y
+                         [x1 x2 :as point]]]
   (let [p (calc-one-y2 w point)]
     (not (= p y))))
 
