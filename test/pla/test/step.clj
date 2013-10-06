@@ -66,3 +66,9 @@
   (is (= [1] (pla.step/calc-y [[-1 0] [1 0]] [[-3 -3]])))
   )
 
+(deftest split-points-test
+  (is (= [[] [[3.01 3]]] (pla.step/split-points [1] [[3.01 3]])))
+  (is (= [[[0.1 -0.9]] [[3.01 3]]]
+         (pla.step/split-points [-1 1] [[0.1 -0.9] [3.01 3]])))
+  )
+
