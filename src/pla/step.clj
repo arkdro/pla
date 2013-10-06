@@ -157,8 +157,9 @@
 
 (defn get-misclassified [w ys points]
   (let [merged (map list ys points)
-        mis-all (map #(is-misclassified w %) merged)]
-    (first (shuffle mis-all))))
+        mis-all (filter #(is-misclassified w %) merged)]
+    (second (first (shuffle mis-all)))))
+
 
 (defn calc [n]
   (println "n: " n)
