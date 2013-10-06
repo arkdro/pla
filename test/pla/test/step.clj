@@ -100,3 +100,11 @@
   (is (= [1 -0.79 3.33] (pla.step/update-w [2 0.21 0.33] -1 [1 -3])))
   )
 
+(deftest line-outside-test
+  (is (= false (pla.step/line-outside [[-1 -1] [1 1]])))
+  (is (= true (pla.step/line-outside [[-1 -1] [-1 1]])))
+  (is (= false (pla.step/line-outside [[0.21 0.33] [-1 -3]])))
+  (is (= false (pla.step/line-outside [[0.21 0.33] [-0.1 -0.3]])))
+  (is (= true (pla.step/line-outside [[-1.1 -1] [-1 1.1]])))
+  )
+
