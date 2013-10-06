@@ -95,3 +95,8 @@
                                          )))
   )
 
+(deftest update-w-test
+  (is (= [2 -0.79 -2.67] (pla.step/update-w [1 0.21 0.33] 1 [-1 -3])))
+  (is (= [1 -0.79 3.33] (pla.step/update-w [2 0.21 0.33] -1 [1 -3])))
+  )
+
