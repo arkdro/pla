@@ -239,7 +239,6 @@
         ys (calc-y line points)
         [neg-points pos-points] (split-points ys points)
         base (int (rand 1000))
-        ;; _ (plot-one-square line neg-points pos-points base)
         init-w [0 0 0]
         [res-iters [wr0 wr1 wr2 :as res-w] :as pla-res] (pla init-w ys points)
         _ (pla.misc/log-val "pla res" pla-res)
@@ -248,11 +247,6 @@
         diff-p (calc-diff-prob line res-line)
         _ (pla.misc/log-val "diff p" diff-p)
         ]
-    ;; (dotimes [x n] (let [line (pla.step/mk-norm-line)]
-    ;;                  (plot line base x)
-    ;;                  (println line)
-    ;;                  )
-    ;;          )
     [res-iters diff-p]
     )
   )
