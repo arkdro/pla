@@ -1,6 +1,9 @@
 (ns pla.test.step
+  (:use clojure.tools.trace)
   (:use [pla.step])
   (:use [clojure.test]))
+
+;; (trace-ns 'pla.step)
 
 (defn inside-interval [n]
   (and
@@ -39,5 +42,27 @@
 (deftest normalize-by-y-test
   (is (= [[23/7 -1] [31/14 1]] (pla.step/normalize-by-y 14/3 5/2 -77/6)))
   (is (= [[7 -1] [49/15 1]] (pla.step/normalize-by-y 5/2 14/3 -77/6)))
+  )
+
+(deftest calc-one-y-test
+  (is (= 1 (pla.step/calc-one-y [[-1 0] [1 0]] [0 0])))
+  (is (= 1 (pla.step/calc-one-y [[-1 0] [1 0]] [1 -0.0001])))
+  (is (= -1 (pla.step/calc-one-y [[-1 0] [1 0]] [1 0.0001])))
+
+  (is (= 1 (pla.step/calc-one-y [[0 -1] [0 1]] [0 0])))
+  (is (= 1 (pla.step/calc-one-y [[0 -1] [0 1]] [0.0001 0])))
+  (is (= -1 (pla.step/calc-one-y [[0 -1] [0 1]] [-0.0001 0])))
+  (is (= 1 (pla.step/calc-one-y [[-1 -1] [1 1]] [3 3])))
+
+  (is (= 1 (pla.step/calc-one-y [[-1 -1] [1 1]] [3 0])))
+  (is (= 1 (pla.step/calc-one-y [[-1 -1] [1 1]] [0 -1])))
+  (is (= -1 (pla.step/calc-one-y [[-1 -1] [1 1]] [0 1])))
+  )
+
+(deftest calc-y-test
+  (is (= [-1] (pla.step/calc-y [[-1 0] [1 0]] [[3 3]])))
+  (is (= [1] (pla.step/calc-y [[-1 -1] [1 1]] [[1 1]])))
+  (is (= [1] (pla.step/calc-y [[-1 -1] [1 1]] [[3.01 3]])))
+  (is (= [1] (pla.step/calc-y [[-1 0] [1 0]] [[-3 -3]])))
   )
 
