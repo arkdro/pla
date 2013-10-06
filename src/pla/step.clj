@@ -50,9 +50,8 @@
 (defn calc-line-w [ [[x1 y1 :as p1] [x2 y2 :as p2]] ]
   (let [dy (- y2 y1)
         dx (- x2 x1)
-        cx (* dy (- x1))
-        cy (* dx (- y1))
-        c (- cx cy)]
+        c (+ (* (- x1) dy)
+             (* y1 dx))]
     [dy (- dx) c]))
 
 (defn normalize-by-x [kx ky c]
