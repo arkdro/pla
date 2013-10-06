@@ -73,8 +73,8 @@
   )
 
 (deftest is-misclassified-test
-  (is (= false (pla.step/is-misclassified [0 0 0] [1 [3.01 3]])))
-  (is (= true (pla.step/is-misclassified [0 0 0] [-1 [3.01 3]])))
+  (is (= false (pla.step/is-misclassified [0 0 0] [1 [3.01 3]]))) ;; ???
+  (is (= true (pla.step/is-misclassified [0 0 0] [-1 [3.01 3]]))) ;; ???
   (is (= true (pla.step/is-misclassified [1 0.5 1.23] [-1 [3.01 3]])))
   )
 
