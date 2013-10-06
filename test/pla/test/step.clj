@@ -109,6 +109,7 @@
   (is (= true (pla.step/line-outside [[-1.1 -1] [-1 1.1]])))
   )
 
+;; this is not a test, actually
 (deftest pla-test
   (let [
         line [[-1 0.34843307003649615] [1 1.9429805981704393]]
@@ -124,9 +125,10 @@
                 [0.6606382312174957 -0.7996944466429889]]
         ys (pla.step/calc-y line points)
         _ (is (= ys [1 1 1 1 1 1 1 1 1 1]))
-        init-w [1 1 1]
+        init-w [0 0 0]
         act (pla.step/pla init-w ys points)
         _ (pla.step/plot-one-square line points [] "pla-test-2")
         ]
+    (println "pla-test, act" act)
     )
   )
