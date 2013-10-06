@@ -89,6 +89,9 @@
         [kx ky c] (calc-line-w line)]
     (normalize kx ky c)))
 
+(defn gen-points [n]
+  (repeatedly n mk-point))
+
 (defn calc [n]
   (println "n: " n)
   )
