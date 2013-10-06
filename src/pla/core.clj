@@ -10,11 +10,11 @@
 
 ;; (trace-ns 'pla.step)
 
-(defn call-calc [n verbose]
+(defn call-calc [n verbose pic]
   (if verbose
     (binding [*out* *err* pla.misc/*verbose* 'true]
-      (time (pla.step/calc n)))
-    (pla.step/calc n)))
+      (time (pla.step/calc n pic)))
+    (pla.step/calc n pic)))
 
 (defn print-result [res]
   (println "res: " res))
@@ -23,9 +23,10 @@
   (let [opts (cli
               args
               ["-v" "--[no-]verbose" :default false]
+              ["-p" "--[no-]picture" :default false]
               ["-n" "--n" "N" :parse-fn #(Integer. %)])
         [options _ _] opts
-        res (call-calc (:n options) (:verbose options))
+        res (call-calc (:n options) (:verbose options) (:picture options))
         ]
     (print-result res)))
 
