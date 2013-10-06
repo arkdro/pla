@@ -160,7 +160,7 @@
 (defn get-misclassified [w ys points]
   (let [merged (map list ys points)
         mis-all (filter #(is-misclassified w %) merged)]
-    (second (first (shuffle mis-all)))))
+    (first (shuffle mis-all))))
 
 (defn update-w [[w0 w1 w2]
                 y
