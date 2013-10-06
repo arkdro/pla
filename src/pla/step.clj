@@ -231,7 +231,7 @@
   (if (line-outside res-line) 1
       (let [n 10000
             delta (calc-diff-prob-aux n 0 line res-line)]
-        (/ delta n))))
+        (float (/ delta n)))))
 
 (defn calc [n pic]
   (let [line (mk-line)
