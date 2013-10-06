@@ -208,6 +208,17 @@
 (defn pla [w ys points]
   (pla-aux 0 w ys points))
 
+(defn line-outside [line]
+  (let [points [[-1 -1]
+                [-1 1]
+                [1 -1]
+                [1 1]]
+        y (map #(calc-one-y line %) points)
+        y1 (filter #(= -1 %) y)
+        y2 (filter #(= 1 %) y)]
+    (if (or (empty? y1) (empty? y2)) true
+        false)))
+
 (defn calc [n pic]
   (let [line (mk-line)
         points (gen-points n)
